@@ -1,1 +1,10 @@
-# munch-api
+# hackfsu-api
+
+.env example:
+
+MONGO_URL =
+PORT = 3000
+YELP_CONSUMER_KEY=
+YELP_CONSUMER_SECRET=
+YELP_TOKEN=
+YELP_TOKEN_SECRET=
