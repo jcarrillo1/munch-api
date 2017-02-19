@@ -17,12 +17,14 @@ exports.get = (req, res) => {
   //     result: 'Missing lat and long',
   //   });
   // }
+  //
   User.findOne({ userId }).then((user) => {
+    console.log(user.interests.join().replace(/\s+/g, '').toLowerCase());
     yelp.search({
       limit: 20,
       term: 'food',
       // location: 'tampa',
-      category_filter: user.interests.join().replace(/\s+/g, ''),
+      category_filter: user.interests.join().replace(/\s+/g, '').toLowerCase(),
       ll: `${lat},${long}`
     })
       .then((data) => {
@@ -52,6 +54,13 @@ exports.get = (req, res) => {
         image_url: restaurant.image_url,
         phone: restaurant.display_phone,
       }))
+      .catch(err => {
+        console.log(err);
+        return res.status(400).send({
+          "result": "Messed up somewhere",
+          "error": err,
+        })
+      });
   })
   .catch(function (err) {
     console.error(err);
