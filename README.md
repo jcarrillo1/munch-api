@@ -1,4 +1,4 @@
-# hackfsu-api
+# muchAPI
 
 .env example:
 
